@@ -1,0 +1,95 @@
+{
+  "soup": [
+    {
+      "id": "1",
+      "soup_name": "Eforiro",
+      "availability": "Available",
+      "img": "eforiro",
+      "price": "3800",
+      "description":"A rich popular soup among natives..full of aroma and flavour..hmm!",
+      "extras": [
+            {"id":"1", "name": "Turkey", "price": "1500"},
+            {"id":"2", "name": "Live Chicken", "price": "3000"},
+            {"id":"3", "name": "Meat", "price": "1800"},
+            {"id":"4", "name": "Snail", "price": "2000"},
+            {"id":"5", "name": "Beef", "price": "1500"},
+            {"id":"6", "name": "Catfish", "price": "1500"},
+            {"id":"7", "name": "Croaker", "price": "1300"},
+            {"id":"8", "name": "Titus", "price": "1000"},
+            {"id":"9", "name": "Chicken", "price": "1500"}
+        ]
+    },
+    {
+      "id": "2",
+      "soup_name": "Edikaikong",
+      "availability": "Available",
+      "img": "edikaikong",
+      "price": "3800",
+      "description":"A rich popular soup among natives..full of aroma and flavour..hmm!",
+      "protein": [
+          {
+            "protein_1": [{"name": "Turkey", "price": "1500"}],
+            "protein_2": [{"name": "Chicken", "price": "1300"}],
+            "protein_3": [{"name": "Tilipia", "price": "1000"}],
+            "protein_4": [{"name": "Beef", "price": "1200"}]
+          }
+        ]
+    },
+    {
+      "id": "3",
+      "soup_name": "Ogbono",
+      "availability": "Available",
+      "img": "ogbono",
+      "price": "3800",
+      "description":"A rich popular soup among natives..full of aroma and flavour..hmm!",
+      "protein": [
+          {
+            "protein_1": [{"name": "Turkey", "price": "1500"}],
+            "protein_2": [{"name": "Chicken", "price": "1300"}],
+            "protein_3": [{"name": "Tilipia", "price": "1000"}],
+            "protein_4": [{"name": "Beef", "price": "1200"}]
+          }
+        ]
+    },
+    {
+      "id": "4",
+      "soup_name": "Stew",
+      "availability": "Available",
+      "img": "stew",
+      "price": "3800",
+      "description":" ",
+      "protein": [
+          {
+            "protein_1": [{"name": "Turkey", "price": "1500"}],
+            "protein_2": [{"name": "Chicken", "price": "1300"}],
+            "protein_3": [{"name": "Tilipia", "price": "1000"}],
+            "protein_4": [{"name": "Beef", "price": "1200"}]
+          }
+        ]
+    },
+    {
+      "id": "5",
+      "soup_name": "Egusi",
+      "availability": "Available",
+      "img": "egusi",
+      "price": "3800",
+      "description":"A rich popular soup among natives..full of aroma and flavour..hmm!"
+    },
+    {
+      "id": "6",
+      "soup_name": "Afang",
+      "availability": "Available",
+      "img": "afang",
+      "price": "3800",
+      "description":"A rich popular soup among natives..full of aroma and flavour..hmm!"
+    },
+    {
+      "id": "7",
+      "soup_name": "Special Okra",
+      "availability": "Available",
+      "img": "okra",
+      "price": "3800",
+      "description":"A rich popular soup among natives..full of aroma and flavour..hmm!"
+    }
+  ]
+}

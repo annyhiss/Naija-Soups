@@ -1,0 +1,128 @@
+<div class="col-md-5 col-sm-5 col-xs-12 animated slideInLeft" id="soups">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="col-md-12 col-sm-12 col-xs-12" ng-repeat = "soup in soups">
+                <!-- main goes in here -->
+                <div class="col-md-12 col-sm-12 col-xs-12" style="cursor: pointer;" ng-click="checko(soup.id, soup.soup_name, soup.price)">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <div class="thumbnail"><img ng-src="img/{{soup.img}}.jpg"></div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-8">
+                            <h5 class="col-md-12 col-sm-12 col-xs-12">{{soup.soup_name}}</h5>
+                            <span class="col-md-12 col-sm-12 col-xs-12">&#x20a6;<b id="price">{{soup.price}}</b><i class="fa fa fa-plus-circle fa-2x" tooltip-placement="auto top" uib-tooltip="Add to Cart"></i></span>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <p style="font-size: 10px;">{{soup.availability}}</p>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12 animated slideInUp" id="extra">
+       <div class="col-md-12 col-sm-12 col-xs-12">
+           <div class="col-md-12 col-sm-12 col-xs-12">
+               <h3>Extras: Proteins</h3>
+               <div class="checkbox" ng-repeat="extra in extras">
+                  <label><input type="checkbox" value="{{extra.price}}" data-checklist-model="basket.extras" data-checklist-value="extra">{{extra.name}} <span><sup>&#8358; {{extra.price}}</sup></span></label>
+               </div>   
+           </div>
+           <div class="col-md-12 col-sm-12 col-xs-12">
+                <h3>Delivery Date </h3>
+                <p class="input-group">
+                  <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="formData.date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="fa fa-calendar"></i></button>
+                  </span>
+                </p>
+           </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 animated slideInRight" id="menus">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+           <div class="col-md-12 col-sm-12 col-xs-12">
+               <h3>Delivery Date </h3>
+               <h6>{{formData.date |  date:'fullDate'}}</h6>
+           </div>
+           <div class="col-md-12 col-sm-12 col-xs-12">
+               <h3>Your order</h3>
+               <div class="col-md-12">
+                   <ul>
+                        <li ng-repeat="stuff in mainOrder">{{stuff.main}} (&#8358; {{stuff.price}}) <i class="fa fa-close" ng-click="remove()"></i></li>
+                   </ul>
+                   <ul>
+                       <li ng-repeat= "things in basket.extras">{{things.name}} (&#8358; {{things.price}})<i class="fa fa-close"  ng-click="removed()"></i></li>
+                   </ul>
+                </div>
+               <h3 id="total"><span>&#8358;</span>{{getTotal() + getAnotherTotal()}}</h3>
+               <div class="orderbtn-area">
+                    <div class="thumbnail" style="height: auto; border: none;"><img src="img/pay-img.jpg" alt=""></div>
+                    <p>By clicking the ORDER NOW button, you agree to the <br><a target="_blank" href="#">Terms &amp; Conditions</a>.</p>
+                    <div class="col-md-12 col-sm-12 col-xs-12 order-btn-cont"><a href="#" class="btn btn-primary" id="order_btn_id" data-toggle="{{valid}}" data-target="#myModal" modal><i class="fa fa-check-circle" aria-hidden="true" style="width: auto; height: auto;"></i> Order Now !</a></div>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>
+ <!-- modal here -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+        <h4 class="modal-title">{{notice[0].heading}}</h4>
+        <h6 id="dateD">Delivery Date: {{formData.date |  date:'fullDate'}}</h6>
+        <h6>Amount: &#8358; {{getTotal() + getAnotherTotal()}}</h6>
+      </div>
+      <div class="modal-body">
+            <!-- form -->
+            <form class="form-horizontal" name="myForm" ng-submit="submitForm(myForm.$valid)" novalidate>
+              <div class="form-group">
+                <label for="{{notice[0].name}}" class="col-sm-2 control-label">{{notice[0].name}}</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="{{notice[0].name}}" name="name" placeholder="Fred Araba" ng-model="formData.name" ng-class="{ 'has-error' : myForm.name.$invalid && !myForm.name.$pristine }" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="{{notice[0].phone}}" class="col-sm-2 control-label">{{notice[0].phone}}</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="{{notice[0].phone}}" name="phone" placeholder="08182957360" ng-model="formData.phone" ng-class="{ 'has-error' : myForm.phone.$invalid && !myForm.phone.$pristine}"required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="{{notice[0].address}}" class="col-sm-2 control-label">{{notice[0].address}}</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="{{notice[0].address}}" name="address" placeholder="No 12 Alagomeji Yaba Lagos." ng-model="formData.address" ng-class="{ 'has-error' : myForm.address.$invalid && !myForm.address.$pristine }" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="{{notice[0].email}}" class="col-sm-2 control-label">{{notice[0].email}}</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="{{notice[0].email}}" name="email" placeholder="info@naijasoups.com.ng" ng-model="formData.email" ng-class="{ 'has-error' : myForm.email.$invalid && !myForm.email.$pristine }">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-4">
+                  <button type="submit" class="btn btn-success btn-block" ng-disabled="myForm.$invalid">Pay</button>
+                </div>
+              </div>
+            </form>
+            <!-- form -->
+      </div>
+      <div class="modal-footer">
+        <!--uncomment this to see the form data displayed.-->
+          <!--<pre>
+              {{ formData }}
+          </pre>-->
+      </div>
+    </div>
+    </div>
+</div>
+<!-- modal ends here -->
