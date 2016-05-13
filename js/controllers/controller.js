@@ -1,5 +1,5 @@
 //var soups = [];
-app.controller("listController", ["$scope", "$state", "soups", function($scope, $state, soups){
+app.controller("listController", ["$scope", "$state", "soups", "$http", function($scope, $state, soups, $http){
 	soups.success(function(data) {
 	    $scope.soups = data.soup;
 	    $scope.extras = data.soup[0].extras;
@@ -81,7 +81,7 @@ app.controller("listController", ["$scope", "$state", "soups", function($scope, 
 	    if (isValid) {
 	      	$http({
 			  method  : 'POST',
-			  url     : '', /*url to send post */
+			  url     : 'http://localhost/Naija-Soups/api/public/placeOrder', /*url to send post */
 			  data    : $.param($scope.formData),  // pass in data as strings
 			  headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
 		 	})
@@ -96,6 +96,7 @@ app.controller("listController", ["$scope", "$state", "soups", function($scope, 
 		    } else {
 		      // if successful, bind success message to message
 		      $scope.message = data.message; // success message to display
+          console.log(data.message);
 		    }
 		  });
 	    }
